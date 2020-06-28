@@ -1,14 +1,15 @@
 // Requiring necessary npm packages
 const express = require("express");
+var router = require("express").Router();
 const logger = require("morgan");
 const mongoose = require("mongoose");
-
+var path = require("path");
 
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 3000;
 
 // Setup model
-const Workout = require("./models/workoutModel.js");
+const db = require("./models");
 const app = express();
 
 app.use(logger("dev"));
@@ -18,39 +19,23 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitness", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
 // Routes
+app.use(require("./routes/api-routes.js"));
+// app.use(require("./routes/html-routes.js"));
 
-app.use(require("./routes/api.js"));
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/index.html"));
+})
 
-// CREATE
+app.get("/stats", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/stats.html"));
+})
 
-// READ
-
-// UDPATE
-
-// POST
-// app.post("/submit", ({body}, res) => {
-//     console.log(body);
-//     // Create a new user using req.body
-//     const user = new User(body);
-//     // Update this route to run the `setFullName` and `lastUpdatedDate` methods before creating a new User
-//     // You must create these methods in the model.
-//     user.setFullName();
-//     user.lastUpdatedDate();
-  
-//     User.create(user)
-//       .then(dbUser => {
-//         // If saved successfully, send the the new User document to the client
-//         res.json(dbUser);
-//       })
-//       .catch(err => {
-//         // If an error occurs, send the error to the client
-//         res.json(err);
-//       });
-//   });
-  
+app.get("/exercise", (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/exercise.html"));
+})
 
 
 // Start the server
