@@ -5,40 +5,30 @@ const Schema = mongoose.Schema;
 const exercisesSchema = new Schema({
     type : {
         type: String,
-        trie: true,
         required: "Please select an exercise type"
     },
-
     name: {
         type: String,
-        trim: true,
         required: "Name is Required"
       },
-      
     duration: {
         type: Number,
-        trim: true,
         required: "Duration is Required"
     },
-
-    weight: {
-        type: String,
-        trim: true,
-        required: "Weight is Required"
+    distance: {
+        type: Number
     },
-
+    weight: {
+        type: Number
+    },
     reps: {
-        type: Number,
-        trim: true,
-        required: "Reps are Required"
+        type: Number
     },
     sets: {
-        type: Number,
-        trim: true,
-        required: "Sets are Required"
+        type: Number
     }
 });
 
-const Exercises = mongoose.model("exercises", exercisesSchema);
+const Exercises = mongoose.model("Exercises", exercisesSchema);
 
 module.exports = Exercises;

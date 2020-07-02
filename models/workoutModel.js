@@ -7,36 +7,42 @@ const workoutsSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  exercises: 
-  [
+  exercises: [
       {
-        type : {
-            type: String,
-            required: "Please select an exercise type"
-        },
-    
-        name: {
-            type: String,
-            required: "Name is Required"
-          },
-        duration: {
-            type: Number,
-            required: "Duration is Required"
-        },
-        distance: {
-            type: Number,
-        },
-        weight: {
-            type: Number,
-        },
-        reps: {
-            type: Number,
-        },
-        sets: {
-            type: Number,
-        }
+    type: Schema.Types.ObjectId,
+    ref: 'Exercises'
       }
-   ]
+    ]
+//   exercises: 
+//   [
+//       {
+//         type : {
+//             type: String,
+//             required: "Please select an exercise type"
+//         },
+    
+//         name: {
+//             type: String,
+//             required: "Name is Required"
+//           },
+//         duration: {
+//             type: Number,
+//             required: "Duration is Required"
+//         },
+//         distance: {
+//             type: Number,
+//         },
+//         weight: {
+//             type: Number,
+//         },
+//         reps: {
+//             type: Number,
+//         },
+//         sets: {
+//             type: Number,
+//         }
+//       }
+//    ]
 },
 {
     toJSON: {
