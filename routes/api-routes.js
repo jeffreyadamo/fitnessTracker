@@ -26,9 +26,8 @@ router.get("/api/workouts", (req, res) => {
     });
 });
 
-// This will need work
+// Get last 7 days of workouts
 router.get("/api/workouts/range", (req, res) => {
-    db.Workout.find({day: { $gt: new Date().getDate()-7}})
     db.Workout.find({})
     .then(dbWorkout => {
       res.json(dbWorkout);
@@ -38,10 +37,7 @@ router.get("/api/workouts/range", (req, res) => {
     });
 });
 // UPDATE
-
 router.put("/api/workouts/:id", (req, res) => {
-    
-    // db.Workout.findByIdAndUpdate(req.params.id, {$push: {exercises: req.body}})
     db.Workout.update({_id: req.params.id},{$push: {exercises: req.body}})
       .then(dbWorkout => {
         res.json(dbWorkout);
@@ -50,7 +46,5 @@ router.put("/api/workouts/:id", (req, res) => {
         res.status(400).json(err);
       });
   });
-
-// DELETE
 
 module.exports = router;

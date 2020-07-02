@@ -1,11 +1,9 @@
 // Requiring necessary npm packages
 const express = require("express");
-var router = require("express").Router();
 const logger = require("morgan");
 const mongoose = require("mongoose");
-var path = require("path");
 
-// Setting up port and requiring models for syncing
+// Setting up port for servers
 const PORT = process.env.PORT || 3000;
 
 // Setup model
