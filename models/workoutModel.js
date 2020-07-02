@@ -34,21 +34,33 @@ const workoutsSchema = new Schema({
         },
         sets: {
             type: Number,
-        }
+        },
       }
-   ]
+   ],
+   totalDuration: Number
 },
-{
-    toJSON: {
-    virtuals: true
-    }
-});
+// {
+//     toJSON: {
+//     virtuals: true
+//     }
+// }
+);
 
-workoutsSchema.virtual("totalDuration").get(function(){
-    return this.exercises.reduce(function(total,exercise){
-        return total + exercise.duration
-    },0)
-})
+workoutsSchema.methods.setTotalDuration = function() {
+
+    var sum = 0;
+    for (i=0; i< this.exercises.length; i++){
+        sum = sum + this.exercises[i].duration
+    }
+    this.totalDuration = sum;
+    return this.totalDuration;
+}
+
+// workoutsSchema.virtual("totalDuration").get(function(){
+//     return this.exercises.reduce(function(total,exercise){
+//         return total + exercise.duration
+//     },0)
+// })
 
 const Workout = mongoose.model("workouts", workoutsSchema);
 

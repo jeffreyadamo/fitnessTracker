@@ -2,8 +2,22 @@ const router = require("express").Router();
 const db = require("../models");
 
 // CREATE
+// router.post("/api/workouts", ({ body }, res) => {
+//   db.Workout.create(body)
+//     .then(dbWorkout => {
+//       res.json(dbWorkout);
+//     })
+//     .catch(err => {
+//       res.status(400).json(err);
+//     });
+// });
+
+// CREATE but with custom methods:
 router.post("/api/workouts", ({ body }, res) => {
-  db.Workout.create(body)
+  const workout = new db.Workout(body)
+  workout.setTotalDuration()
+
+  db.Workout.create(workout)
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
