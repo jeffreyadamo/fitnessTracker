@@ -2,7 +2,7 @@
 
 Jeffrey Adamo  
 UW Full Stack BootCamp  
-[Fitness Tracker Website](#)  
+[Fitness Tracker Website](https://mysterious-lowlands-27364.herokuapp.com/)  
 [Fitness Tracker GitHub Repo](https://github.com/jeffreyadamo/fitnessTracker)  
 <br>
 ![MIT](https://img.shields.io/badge/license-MIT-green)  
@@ -44,9 +44,21 @@ npm i
 
 Application is deployed GitHub repository and served on Heroku with JawsDB. 
 
-Users visiting [Heroku link](#) are visited with 3 HTML paths @ "/", "/stats", and "/exercise". At "/", the user has options to POST and PUT data provided in fitness form. "/stats" brings up the user dashboard API routes for these are provided. "/exercise" provides a form for the user to create an workout or add an exercise to an continuing workout.  
+Users visiting [Fitness Tracker](https://mysterious-lowlands-27364.herokuapp.com/) are visited with 3 HTML paths @ "/", "/stats", and "/exercise". At "/", the user has options to POST and PUT data provided in fitness form. "/stats" brings up the user dashboard API routes for these are provided. "/exercise" provides a form for the user to create an workout or add an exercise to an continuing workout.  
 
 In order for the application to run successfully, the following files were created: server.js, /models, and /routes. 
+
+## Usage
+
+### Issue #1 - models
+
+The mongoose schema used for this app is located in /models/workoutModel.js and is exported where /models/index.js can be referenced:  
+<img src="public/assets/workoutsSchema.png" style=width:40%>  
+* I would like to be able to seperate the exercises into its own /models/exercises.js schema and reference it in workoutSchema, but could not get this to work.
+
+### Issue #2 - custom Methods
+* The above workoutsSchema utilizes a "virtual" to create a function to set the "totalDuration" property of the model. We discussed using a "method" instead to solve this in class, but I have not been able to render it effective  
+
 
 ## License
 
